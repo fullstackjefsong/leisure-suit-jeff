@@ -126,10 +126,12 @@
   const say = (text, type = 'text') => {
     if (text != null && text !== '') out.push({ type, text: String(text) });
   };
+  const sfx = (name) => out.push({ type: 'sfx', text: name });
 
   const g = {
     get state() { return S; },
     say: (t) => say(t),
+    sfx,
     flag: (k) => !!S.flags[k],
     get: (k) => S.flags[k],
     set: (k, v = true) => { S.flags[k] = v; },
@@ -304,6 +306,7 @@
     if (c === false) return;
     if (S.dead) return;
     if (e.msg) say(val(e.msg, g));
+    if (e.sfx) sfx(e.sfx);
     enterRoom(e.to);
   }
 
@@ -369,11 +372,13 @@
     if (how === 'car') {
       S.carAt = dest.id;
       S.minutes += CAR_MINUTES;
+      sfx('car');
       say(pick(LSJ.config.driveLines || ['You drive.']).replace('{dest}', dest.prose || dest.name));
       g.award('first_drive');
     } else {
       S.money -= BUS_FARE;
       S.minutes += BUS_MINUTES;
+      sfx('bus');
       say(`[Bus fare: -${fmtMoney(BUS_FARE)}]`, 'system');
       say(pick(LSJ.config.busLines || ['You ride the bus.']).replace('{dest}', dest.prose || dest.name));
     }
@@ -710,6 +715,7 @@
       time: fmtTime(S.minutes),
       money: fmtMoney(S.money),
       title: r.title,
+      dest: r.dest,
       art: tidyArt(val(r.art, g)),
       objects: objs,
       exits,

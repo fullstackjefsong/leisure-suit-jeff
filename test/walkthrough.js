@@ -6,7 +6,7 @@ const vm = require('vm');
 const assert = require('assert');
 
 const root = path.join(__dirname, '..');
-const files = ['registry.js', 'content/world.js', 'content/items.js', 'content/home.js', 'content/work.js', 'content/costco.js', 'engine.js'];
+const files = ['registry.js', 'content/world.js', 'content/items.js', 'content/home.js', 'content/work.js', 'content/costco.js', 'content/music.js', 'engine.js', 'audio.js'];
 for (const f of files) vm.runInThisContext(fs.readFileSync(path.join(root, 'js', f), 'utf8'), { filename: f });
 
 const { Engine: E } = LSJ;
@@ -51,8 +51,20 @@ check('title/death/end art fits', () => {
   }
 });
 
+check('soundtrack compiles; every destination has a theme', () => {
+  for (const id of Object.keys(LSJ.music.songs)) LSJ.Audio.compile(id);
+  for (const d of Object.values(LSJ.destinations)) {
+    if (d.comingSoon) continue;
+    assert.ok(LSJ.music.songs[LSJ.music.themes[d.id]], 'no theme song for destination ' + d.id);
+  }
+  ['points', 'death', 'fanfare', 'title'].forEach((id) => assert.ok(LSJ.music.songs[id], 'missing song ' + id));
+});
+
 check('all score ids are reachable keys & exits valid', () => {
-  for (const r of Object.values(LSJ.rooms)) for (const e of r.exits || []) assert.ok(LSJ.rooms[e.to], `${r.id} exit -> ${e.to}`);
+  for (const r of Object.values(LSJ.rooms)) for (const e of r.exits || []) {
+    assert.ok(LSJ.rooms[e.to], `${r.id} exit -> ${e.to}`);
+    if (e.sfx) assert.ok(LSJ.Audio.effects.includes(e.sfx), `${r.id} exit sfx ${e.sfx}`);
+  }
 });
 
 const walkthrough = [
@@ -72,6 +84,9 @@ const walkthrough = [
 check('Act I walkthrough completes', () => {
   E.start();
   const out = play(walkthrough);
+  const fx = out.filter((o) => o.type === 'sfx').map((o) => o.text);
+  fx.forEach((n) => assert.ok(LSJ.Audio.effects.includes(n), 'unknown sound effect: ' + n));
+  assert.ok(['printer', 'stapler', 'cash', 'bus', 'car', 'slosh'].every((n) => fx.includes(n)), 'missing sfx in walkthrough: ' + fx.join(','));
   const s = E.state;
   ['paid', 'tps_stapled', 'stapler_returned', 'membership_valid', 'car_fixed', 'suit_clean', 'combed', 'cologne'].forEach((f) => assert.ok(s.flags[f], 'flag missing: ' + f));
   assert.ok(s.ended, 'act did not end');

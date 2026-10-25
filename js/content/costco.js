@@ -38,7 +38,7 @@
           take: (g) => {
             g.give('cart');
             g.set('cart_taken_once');
-            g.award('take_cart');
+            g.sfx('cart'); g.award('take_cart');
             return 'You yank a cart free from the corral. Its front-left wheel immediately starts squeaking and spinning, as if trying to escape. You are now a man with a cart. A man with PURPOSE.';
           },
           push: (g) => L.rooms.costco_lot.objects.carts.verbs.take(g),
@@ -142,7 +142,7 @@
     if (g.flag('membership_valid')) return '"You\'re already renewed! Executive Membership, though...?" No.';
     if (!g.spend(RENEW_PRICE)) return `"That'll be $65." You check your wallet: ${g.fmt(g.money())}. Tyler watches your face fall. "We take Visa," he says helpfully. You don't have a Visa. You have a TPS report problem and no paycheck.`;
     g.set('membership_valid');
-    g.award('renew');
+    g.sfx('cash'); g.award('renew');
     return 'You hand over $65. Tyler slaps a shiny RENEWED sticker on your card and asks if you\'ve considered Executive Membership. You say no. He says "Okay" in a voice that sounds like a candle going out. You are once again a Costco member in good standing. [Cash: -$65.00]';
   };
 
@@ -187,7 +187,7 @@
           eat: (g) => {
             if (g.flag('sample_eaten')) return '"One per customer, hon." She doesn\'t look up. She knows. She always knows.';
             g.set('sample_eaten');
-            g.award('eat_sample');
+            g.sfx('gulp'); g.award('eat_sample');
             return 'You pop a cocktail weenie into your mouth. "Mmmm!" you say loudly, as one does at sample stations. Marge beams. "A man who engages with the brand! I like you. Now, hon, about that stain..." She holds up a Kirkwood Signature STAIN-B-GONE PEN.';
           },
           take: (g) => L.rooms.costco_aisles.objects.weenies.verbs.eat(g),
@@ -232,7 +232,7 @@
           wear: (g) => {
             if (g.flag('cologne')) return 'You already smell like a 1989 locker room. Adding Eau de Musk would create an entirely new element.';
             g.set('cologne');
-            g.award('cologne');
+            g.sfx('spray'); g.award('cologne');
             return 'You pump the tester once onto your neck. It smells like a lumberjack fighting a tiger in a pine forest. Three nearby shoppers sneeze in unison. You smell like a CHAMPION.';
           },
           drink: (g) => g.die('EAU DE DEATH', 'You pump Kirkwood Eau de Musk straight into your mouth. Your tongue goes numb, then your face, then your whole sense of self. The last thing you hear is Gus yelling, "CLEANUP ON AISLE 12!"'),
@@ -314,7 +314,7 @@
     const price = coupon ? BATTERY_PRICE - 1000 : BATTERY_PRICE;
     if (!g.spend(price)) return `"That'll be ${g.fmt(price)}, chief." You have ${g.fmt(g.money())}. Rusty waits. You wait. Nobody wins. Maybe go get that paycheck.`;
     g.give('battery');
-    g.award('buy_battery');
+    g.sfx('cash'); g.award('buy_battery');
     let msg = '';
     if (coupon) {
       g.lose('coupon');
@@ -383,6 +383,7 @@
     if (g.has('hot_dog')) return 'You already have a hot dog. Eat it, Jeff. EAT IT.';
     if (!g.spend(HOT_DOG_PRICE)) return 'You cannot afford $1.50. Let that sink in.';
     g.give('hot_dog');
+    g.sfx('cash');
     return 'You buy the hot dog combo for $1.50, the best deal in America. The clerk hands it over with the solemnity of a flag-folding ceremony. [Cash: -$1.50]';
   };
 })();

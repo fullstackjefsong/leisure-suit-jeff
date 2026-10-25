@@ -82,13 +82,31 @@ Comedic deaths include Karen's yogurt, the 1997 break-room coffee, drinking colo
 * `js/content/*.js` holds data-driven content. Each room has art, a description, objects with verb handlers, and exits.
 * `js/engine.js` handles parsing, state, scoring, the clock, travel, save/load and undo. It has no DOM code, so it can be tested in Node.
 * `js/ui.js` renders the CRT screen and handles input.
+* `js/audio.js` is an AdLib (Yamaha OPL2) style 2-operator FM synthesizer, drum kit, sequencer and sound-effect generator built on Web Audio. No audio files are used.
+* `js/content/music.js` holds the soundtrack as MIDI-style note data (notation documented at the top of the file), the FM instrument patches, and the destination-to-theme map.
 * `test/walkthrough.js` is a Node test that plays Act I end to end and checks the art dimensions.
+
+## Soundtrack
+All music is original, written in the late-80s Sierra lounge style and played live by the FM synth.
+
+| Song | Where | Style |
+|---|---|---|
+| "Polyester Nights" | Title screen, start of each game, credits loop | Swing lounge, honking sax, walking bass |
+| "Waterbed Groove" | Home | 70s slow jam: electric piano, vibes |
+| "Please Hold (Synergy Bossa)" | Synergex | Elevator-muzak bossa nova |
+| "Bulk Buy Boogie" | Costco | Oom-pah marimba polka |
+| Points / Wah-Wah-Waaah / Act I Fanfare | Scoring, death, ending | Jingles |
+
+* Sound effects fire from content with `g.sfx(name)` or an exit's `sfx` property. Available effects: printer, stapler, clunk, crash, slosh, bus, car, cash, coins, ding, beep, gulp, spray, cart.
+* Music ducks under jingles and effects, and pauses while the tab is hidden.
+* Player commands: `MUSIC ON/OFF`, `SFX ON/OFF`, `SOUND ON/OFF`, `VOLUME 0-10`, or the ♪ button. Settings persist in localStorage.
+* Browsers only allow audio after a key press or click, so the music starts with the first input on the title screen.
 
 ### Content handler conventions
 * `objects.<id>.verbs.<verb>` is either a string or `fn(g, ctx)`. A function may return a string to print, or `false` to fall through to the default reply.
 * `objects.<id>.useOn.<targetId>` and `objects.<id>.receive.<itemId>` handle two-object commands.
 * `hidden(g)` hides an object. `scenery: true` keeps it interactable but leaves it out of the "You see" list.
-* `g` (game API): `say, flag, set, has, give, lose, money, spend, earn, award, die, end, goto, advance, learn, fmt`.
+* `g` (game API): `say, sfx, flag, set, has, give, lose, money, spend, earn, award, die, end, goto, advance, learn, fmt`.
 
 ## Running
 Open `index.html` in a browser. No build step is needed.

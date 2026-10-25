@@ -71,6 +71,7 @@
       '  GO TO <place> travels across town (HOME, WORK, COSTCO), even if no path is shown.\n' +
       '  DRIVE TO <place> or TAKE BUS TO <place> picks how you get there.\n' +
       'OTHER: INVENTORY (I), SCORE, TIME, MAP, HINT, SAVE [slot], RESTORE [slot], UNDO, RESTART.\n' +
+      'SOUND: MUSIC ON/OFF, SFX ON/OFF, SOUND ON/OFF (everything), VOLUME 0-10.\n' +
       'TIP: click names under the picture to add them to your command.',
 
     busLines: [

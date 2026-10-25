@@ -33,11 +33,11 @@
         defaultFor: ['sleep'],
         desc: 'A king-size waterbed with a padded vinyl frame and leopard-print sheets. It sloshes if you so much as look at it. Sure enough: slosh.',
         verbs: {
-          sit: 'You sit. The bed sloshes. You slosh. Somewhere, a neighbor bangs on the wall.',
+          sit: (g) => { g.sfx('slosh'); return 'You sit. The bed sloshes. You slosh. Somewhere, a neighbor bangs on the wall.'; },
           push: 'You press on the waterbed. A wave travels across it, bounces off the far side, and comes back to slap you. Physics!',
           sleep: (g) => {
             if (allDone(g)) {
-              g.award('act_end');
+              g.sfx('slosh'); g.award('act_end');
               g.end('END OF ACT I', 'You flop onto the waterbed. It sloshes in triumph. You got paid, the Fiero runs, and the suit is spotless. Tomorrow you need a date, some dignity, and, according to the reunion committee, ice. But tonight, Jeff sleeps the sleep of a man who completed his TPS report. Sweet dreams, Jeff.');
               return;
             }
@@ -46,6 +46,7 @@
             if (!g.flag('car_fixed')) todo.push("your car still won't start");
             if (!g.flag('suit_clean')) todo.push('Ohio is still on your suit');
             g.advance(20);
+            g.sfx('slosh');
             return 'You lie down on the waterbed and stare at the ceiling while the bed sloshes. You can\'t sleep. You keep thinking: ' + todo.join(', ') + '. You get back up after twenty restless minutes.';
           },
           kick: 'You kick the waterbed. It wobbles for nine minutes. You watch the whole time. It is the most action this bed has seen since 1996.',
@@ -103,7 +104,7 @@
             if (g.flag('quarters')) return 'Only crumbs and a TV Guide from 1996 this time. The couch has given all it can.';
             g.set('quarters');
             g.earn(75);
-            g.award('couch_quarters');
+            g.sfx('coins'); g.award('couch_quarters');
             return 'You dig between the cushions and find three quarters, a petrified Cheeto, and a cassette labeled "JEFF\'S SMOOTH MIX VOL. 4". You keep the quarters. [Cash: +$0.75]';
           },
           sleep: "The couch is for napping. You need a proper sleep in the waterbed, and only when the day's work is done.",
@@ -130,7 +131,7 @@
 
   L.playMessages = (g) => {
     g.set('messages_heard');
-    g.award('messages');
+    g.sfx('beep'); g.award('messages');
     return (
       'You press PLAY. The tape squeals.\n\n' +
       'BEEP. "Jeffy, it\'s Mom. The reunion is tomorrow night! Wear the nice suit. Not the blue one. ...It\'s always the blue one, isn\'t it. Love you."\n\n' +
@@ -335,7 +336,7 @@
     if (opened) g.award('open_hood');
     g.lose('battery');
     g.set('car_fixed');
-    g.award('install_battery');
+    g.sfx('car'); g.award('install_battery');
     return (opened ? 'You pop the hood. ' : '') +
       'You yank out the dead battery, heave in the 40-pound DieHarder, and connect red to red and black to black. You only get shocked twice. You turn the key... VRRRROOM! The Fiero roars to life, or at least clears its throat with real conviction. Its one working headlight pops up proudly.\n\nYou can now DRIVE TO places for free!';
   };

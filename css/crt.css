@@ -132,6 +132,19 @@ body {
   text-transform: uppercase;
 }
 
+#snd {
+  background: transparent;
+  border: 1px solid var(--amber-dim);
+  color: var(--amber);
+  font: inherit;
+  text-shadow: var(--glow);
+  cursor: pointer;
+  padding: 0 6px;
+  white-space: nowrap;
+}
+#snd:hover { background: var(--amber); color: var(--bg); text-shadow: none; }
+#snd.off { color: var(--amber-dim); }
+
 @media (max-width: 900px) {
   body { font-size: 15px; }
 }

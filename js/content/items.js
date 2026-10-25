@@ -6,7 +6,7 @@
     if (g.flag('suit_clean')) return "The suit is already clean. Don't push your luck.";
     g.set('suit_clean');
     g.lose('stain_pen');
-    g.award('clean_suit');
+    g.sfx('spray'); g.award('clean_suit');
     return 'You uncap the Kirkwood Stain-B-Gone pen and dab at Ohio. The stain fizzes, shrinks to Rhode Island, then vanishes completely, along with a little polyester and maybe one of your fingerprints. The suit is CLEAN! The pen gives its life in the process.';
   };
 
@@ -17,7 +17,7 @@
     if (!g.has('stapler')) return "You need a stapler. A paper clip would violate Section 4.2 of the employee handbook, and you'd have to fill out a form. A TPS form.";
     g.set('tps_stapled');
     g.lose('cover_sheet');
-    g.award('staple_report');
+    g.sfx('stapler'); g.award('staple_report');
     return "KA-CHUNK. Merv's orange stapler bites through the cover sheet and the report like it was born to do this, and it probably was. The TPS report is now complete, compliant, and covered.";
   };
 
@@ -146,7 +146,7 @@
     verbs: {
       eat: (g) => {
         g.lose('hot_dog');
-        g.award('hot_dog');
+        g.sfx('gulp'); g.award('hot_dog');
         return g.flag('suit_clean')
           ? 'You eat the hot dog leaning forward at a precise 45-degree angle, like a surgeon. Not one drop lands on the suit. A small crowd applauds. (One man. One man applauds.)'
           : "You wolf down the hot dog. A drop of mustard lands right on Ohio. Ohio doesn't notice. Ohio has seen worse.";
@@ -161,7 +161,7 @@
       wear: (g) => {
         if (g.flag('cologne')) return 'You already smell like a 1989 locker room. Any more and the EPA gets involved.';
         g.set('cologne');
-        g.award('cologne');
+        g.sfx('spray'); g.award('cologne');
         return 'You splash Brut Force on your neck, your wrists, and, for luck, your knees. The air around you shimmers. A fly drops dead somewhere in Ohio. You smell like a CHAMPION.';
       },
       use: (g) => L.items.cologne.verbs.wear(g),

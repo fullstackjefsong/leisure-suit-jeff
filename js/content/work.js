@@ -67,7 +67,7 @@
         desc: 'Outside the glass doors is the Route 42 bus stop. Fare: $2.00. From here you can TAKE BUS TO HOME or COSTCO.',
       },
     },
-    exits: [{ to: 'work_cubes', label: 'cubicles (elevator)', names: ['cubicles', 'cubicle', 'cubes', 'elevator', 'upstairs', 'up', 'in', 'inside', 'my desk'] }],
+    exits: [{ to: 'work_cubes', label: 'cubicles (elevator)', sfx: 'ding', names: ['cubicles', 'cubicle', 'cubes', 'elevator', 'upstairs', 'up', 'in', 'inside', 'my desk'] }],
   });
 
   // ------------------------------------------------------------------ CUBICLES
@@ -97,7 +97,7 @@
           use: (g) => {
             if (g.flag('tps_stapled') || g.has('cover_sheet') || g.flag('cover_in_tray')) return 'You already printed the cover sheet. Printing another would be a waste of paper, and paper is apparently a structural material around here.';
             if (g.flag('print_queued')) return 'The cover sheet is already in the print queue. The printer is waiting for paper: PC LOAD LETTER.';
-            g.award('print_cover');
+            g.sfx('printer'); g.award('print_cover');
             if (g.flag('printer_loaded')) {
               g.set('cover_in_tray');
               return 'You open NEW TPS COVER SHEET.DOC and click PRINT. Down the hall, the printer obediently whirs. Your cover sheet is waiting in the break room.';
@@ -113,7 +113,7 @@
         name: 'Solitaire', scenery: true, names: ['solitaire', 'game', 'cards', 'minesweeper'],
         desc: 'Solitaire: the backbone of American productivity.',
         verbs: {
-          use: (g) => { g.award('solitaire'); g.advance(10); return 'You play a quick game of Solitaire. You win. The cards bounce across the screen. It is the most fulfilling ten minutes of your work week.'; },
+          use: (g) => { g.sfx('beep'); g.award('solitaire'); g.advance(10); return 'You play a quick game of Solitaire. You win. The cards bounce across the screen. It is the most fulfilling ten minutes of your work week.'; },
         },
       },
       tps_desk: {
@@ -182,7 +182,7 @@
       },
     },
     exits: [
-      { to: 'work_lobby', label: 'lobby', names: ['lobby', 'elevator', 'down', 'downstairs', 'out', 'reception'] },
+      { to: 'work_lobby', label: 'lobby', sfx: 'ding', names: ['lobby', 'elevator', 'down', 'downstairs', 'out', 'reception'] },
       { to: 'work_break', label: 'break room', names: ['break room', 'breakroom', 'kitchen', 'kitchenette', 'printer room', 'lounge'] },
       { to: 'work_boss', label: "Brumley's office", names: ['brumleys office', 'boss', 'bosss office', 'boss office', 'office', 'brumley'] },
     ],
@@ -221,7 +221,7 @@
             : 'A massive office printer. Its display flashes: PC LOAD LETTER. Nobody has ever known what that means. Its paper tray is completely empty.',
         verbs: {
           kick: (g) => {
-            g.award('kick_printer');
+            g.sfx('clunk'); g.award('kick_printer');
             return "You take a deep breath and kick the printer. Then again. Then you're kicking it in slow motion while a rap song plays in your head. It feels AMAZING. The printer, unbowed, still reads PC LOAD LETTER. It needs paper, not therapy.";
           },
           open: (g) => (g.flag('printer_loaded') ? 'The paper tray is full. Life is good.' : 'You open the paper tray. Empty. That explains PC LOAD LETTER. "LOAD LETTER" means... load letter-size paper! Jeff is a genius.'),
@@ -231,7 +231,7 @@
           paper: (g) => {
             g.lose('paper');
             g.set('printer_loaded');
-            g.award('load_printer');
+            g.sfx('printer'); g.award('load_printer');
             if (g.flag('print_queued')) {
               g.unset('print_queued');
               g.set('cover_in_tray');
@@ -262,6 +262,7 @@
           take: (g) => {
             g.set('table_down');
             g.give('paper');
+            g.sfx('crash');
             return 'You yank the ream out from under the table leg. The table tips, considers its life choices, and collapses with a CRASH. Somewhere, a facilities manager senses a disturbance. You now have a ream of paper.';
           },
         },
@@ -351,7 +352,7 @@
             g.set('report_given');
             g.set('paid');
             g.earn(25000);
-            g.award('paid');
+            g.sfx('cash'); g.award('paid');
             return 'Brumley inspects the cover sheet. He holds it up to the light. He sniffs it. "Yeahhh... that\'s a cover sheet." He drops the report into a drawer marked SHRED and hands you an envelope. "Payroll is doing a cash thing this week. Don\'t ask." Inside: $250.00! [Cash: +$250.00]\n\n"Oh, and Jeff? Nice suit. Is that... Ohio?"';
           },
           cake: '"Yeahhh, I\'m gonna have to pass. I\'m doing keto. Mmm-kay."',

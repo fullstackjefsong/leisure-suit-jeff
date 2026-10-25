@@ -18,7 +18,61 @@
   }
 
   function printAll(outputs) {
-    for (const o of outputs) print(o.text, o.type === 'text' ? '' : o.type);
+    for (const o of outputs) if (o.type !== 'sfx') print(o.text, o.type === 'text' ? '' : o.type);
+  }
+
+  // ------------------------------------------------------------- sound
+  const A = LSJ.Audio;
+  const themeFor = (dest) => LSJ.music.themes[dest] || 'title';
+  const songName = () => (A.playing && LSJ.music.songs[A.playing] ? LSJ.music.songs[A.playing].name : null);
+
+  function soundtrack(outputs) {
+    for (const o of outputs) if (o.type === 'sfx') A.sfx(o.text);
+    const has = (t) => outputs.some((o) => o.type === t);
+    const v = E.view();
+    if (v.dead) { if (has('death')) A.playMusic('death', { loop: false }); return; }
+    if (v.ended) { if (has('end')) A.playMusic('fanfare', { loop: false, then: 'title' }); return; }
+    if (has('intro')) A.playMusic('title', { loop: false, then: themeFor(v.dest) });
+    else A.playMusic(themeFor(v.dest));
+    if (has('score')) A.jingle('points');
+  }
+
+  function updateSoundButton() {
+    const on = A.settings.music || A.settings.sfx;
+    const b = $('snd');
+    b.textContent = on ? '\u266A ON' : '\u266A OFF';
+    b.classList.toggle('off', !on);
+  }
+
+  function audioCommand(input) {
+    const m = /^\s*(music|sfx|sound|sounds|volume|vol)\b\s*(.*)$/i.exec(input);
+    if (!m) return false;
+    const what = m[1].toLowerCase();
+    const arg = m[2].trim().toLowerCase();
+    const on = arg === 'on' ? true : arg === 'off' ? false : null;
+    if (arg && on === null && !what.startsWith('vol')) return false;
+    print('> ' + input.toUpperCase(), 'echo');
+    A.unlock();
+    if (what.startsWith('vol')) {
+      const n = parseInt(arg, 10);
+      if (!isNaN(n)) A.setVolume(n);
+      print(`Volume: ${A.settings.volume} of 10.${isNaN(n) ? ' Type VOLUME 0-10 to change it.' : ''}`, 'system');
+    } else if (what === 'music') {
+      const v = on === null ? !A.settings.music : on;
+      A.setMusic(v);
+      print(v ? 'Music on.' + (songName() ? ` \u266A Now playing: "${songName()}"` : '') : 'Music off. Jeff hums to himself instead.', 'system');
+    } else if (what === 'sfx') {
+      const v = on === null ? !A.settings.sfx : on;
+      A.setSfx(v);
+      print(v ? 'Sound effects on.' : 'Sound effects off.', 'system');
+    } else {
+      const v = on === null ? !(A.settings.music || A.settings.sfx) : on;
+      A.setMusic(v);
+      A.setSfx(v);
+      print(v ? 'Sound on. Bow-chicka-bow-bow.' : 'Sound off. The silence is deafening.', 'system');
+    }
+    updateSoundButton();
+    return true;
   }
 
   function chip(label, onClick) {
@@ -74,24 +128,47 @@
     $('st-score').textContent = '';
     $('st-right').textContent = '';
     print('Press ENTER to begin a new game, or type RESTORE to load your quick-save.', 'system');
+    print('This game has an AdLib soundtrack. Type SOUND OFF (or click \u266A) to mute it.', 'system');
   }
 
   function run(input) {
+    if (audioCommand(input)) return;
     if (onTitle) {
       onTitle = false;
       log.innerHTML = '';
-      printAll(E.start());
-      if (/^\s*(restore|load)\b/i.test(input)) printAll(E.exec(input));
+      const out = E.start();
+      if (/^\s*(restore|load)\b/i.test(input)) out.push(...E.exec(input));
+      printAll(out);
       render();
+      soundtrack(out);
       return;
     }
     if (!input.trim()) return;
     print('> ' + input.toUpperCase(), 'echo');
-    printAll(E.exec(input));
+    const out = E.exec(input);
+    printAll(out);
     render();
+    soundtrack(out);
   }
 
+  function wake() {
+    A.unlock();
+    if (onTitle && !A.playing) A.playMusic('title');
+  }
+  document.addEventListener('pointerdown', wake);
+
+  $('snd').addEventListener('click', () => {
+    A.unlock();
+    const v = !(A.settings.music || A.settings.sfx);
+    A.setMusic(v);
+    A.setSfx(v);
+    if (v && onTitle) A.playMusic('title');
+    updateSoundButton();
+    cmd.focus();
+  });
+
   cmd.addEventListener('keydown', (e) => {
+    wake();
     if (e.key === 'Enter') {
       const v = cmd.value;
       cmd.value = '';
@@ -111,5 +188,6 @@
   });
 
   showTitle();
+  updateSoundButton();
   cmd.focus();
 })();
