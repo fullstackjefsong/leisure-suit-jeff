@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leisure Suit Jeff: The Complete Solution - Electro-Gamer Monthly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Narrow:ital,wght@0,400;0,700;1,400&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    :root { --red: #e1261c; --yel: #ffd400; --blu: #0b4fa8; --ink: #141414; --paper: #fbf8ef; --amber: #ffb000; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #2b2b2b repeating-linear-gradient(45deg, #2b2b2b 0 12px, #303030 12px 24px); color: var(--ink); font: 17px/1.42 'Archivo Narrow', 'Arial Narrow', sans-serif; }
+    .page { max-width: 1100px; margin: 24px auto; background: var(--paper); box-shadow: 0 10px 40px #000a; border: 1px solid #000; }
+    .gutter { display: flex; justify-content: space-between; font: 10px 'Press Start 2P', monospace; padding: 8px 14px; background: var(--ink); color: var(--yel); letter-spacing: 1px; }
+    .masthead { display: flex; align-items: center; gap: 18px; padding: 14px 22px; background: var(--red); color: #fff; border-bottom: 6px solid var(--yel); }
+    .masthead .logo { font: 54px/0.9 Anton, Impact, sans-serif; letter-spacing: 1px; text-transform: uppercase; text-shadow: 4px 4px 0 var(--ink); }
+    .masthead .logo small { display: block; font: 13px 'Press Start 2P', monospace; letter-spacing: 3px; margin-top: 6px; text-shadow: 2px 2px 0 var(--ink); }
+    .masthead .issue { margin-left: auto; text-align: right; font: 11px/1.8 'Press Start 2P', monospace; }
+    .section-tab { display: inline-block; background: var(--blu); color: #fff; font: 12px 'Press Start 2P', monospace; padding: 8px 12px; margin: 20px 22px 0; transform: skew(-12deg); box-shadow: 4px 4px 0 var(--ink); }
+    header.story { padding: 6px 22px 16px; border-bottom: 3px double var(--ink); }
+    h1 { font: 76px/0.92 Anton, Impact, sans-serif; text-transform: uppercase; margin: 12px 0 6px; letter-spacing: 1px; color: var(--ink); }
+    h1 .hl { color: var(--red); -webkit-text-stroke: 2px var(--ink); text-shadow: 5px 5px 0 var(--yel); }
+    .deck { font-size: 24px; font-weight: 700; font-style: italic; margin: 6px 0; max-width: 820px; }
+    .byline { font: 11px 'Press Start 2P', monospace; color: var(--red); margin-top: 10px; }
+    .burst { float: right; width: 170px; height: 170px; margin: -6px 0 0 18px; display: grid; place-items: center; text-align: center; color: var(--ink); background: var(--yel); font: 26px/1 Anton, Impact, sans-serif; text-transform: uppercase; clip-path: polygon(50% 0, 61% 18%, 82% 7%, 80% 30%, 100% 33%, 86% 50%, 100% 67%, 80% 70%, 82% 93%, 61% 82%, 50% 100%, 39% 82%, 18% 93%, 20% 70%, 0 67%, 14% 50%, 0 33%, 20% 30%, 18% 7%, 39% 18%); transform: rotate(10deg); }
+    .burst span { display: block; font-size: 52px; color: var(--red); }
+    .cols { column-count: 2; column-gap: 30px; column-rule: 1px solid #0002; padding: 18px 22px 8px; }
+    .cols > * { break-inside: avoid; }
+    .cols p { margin: 0 0 10px; text-align: justify; hyphens: auto; }
+    .dropcap::first-letter { float: left; font: 64px/0.8 Anton, Impact, sans-serif; color: var(--red); margin: 6px 8px 0 0; }
+    h2 { font: 34px/1 Anton, Impact, sans-serif; text-transform: uppercase; margin: 18px 0 8px; padding: 6px 10px; background: var(--ink); color: var(--yel); transform: skew(-6deg); }
+    h2 small { display: block; font: 10px 'Press Start 2P', monospace; color: #fff; margin-top: 6px; transform: none; }
+    h3 { font: 22px/1.05 Anton, Impact, sans-serif; text-transform: uppercase; color: var(--blu); margin: 14px 0 6px; border-bottom: 3px solid var(--red); }
+    ol.steps { list-style: none; counter-reset: s; margin: 0 0 12px; padding: 0; }
+    ol.steps li { counter-increment: s; position: relative; padding: 4px 0 6px 34px; border-bottom: 1px dotted #0003; }
+    ol.steps li::before { content: counter(s); position: absolute; left: 0; top: 5px; width: 24px; height: 24px; border-radius: 50%; background: var(--red); color: #fff; font: 11px/24px 'Press Start 2P', monospace; text-align: center; }
+    kbd { font: 21px/1 VT323, monospace; background: var(--ink); color: var(--amber); padding: 1px 6px 2px; border-radius: 2px; white-space: nowrap; box-shadow: 2px 2px 0 var(--red); }
+    .pts { display: inline-block; font: 9px 'Press Start 2P', monospace; background: var(--yel); border: 2px solid var(--ink); padding: 3px 4px; margin-left: 4px; vertical-align: 2px; }
+    .cash { display: inline-block; font: 9px 'Press Start 2P', monospace; background: #1c8a3a; color: #fff; padding: 4px 5px; margin-left: 4px; vertical-align: 2px; }
+    .cash.neg { background: var(--red); }
+    .box { border: 3px solid var(--ink); padding: 10px 12px; margin: 10px 0 14px; box-shadow: 6px 6px 0 var(--ink); background: #fff; }
+    .box.yel { background: var(--yel); }
+    .box.blu { background: var(--blu); color: #fff; }
+    .box.blu h3 { color: var(--yel); border-color: var(--yel); }
+    .box.red { background: var(--red); color: #fff; }
+    .box.red h3 { color: var(--yel); border-color: #fff; }
+    .box h3:first-child { margin-top: 0; }
+    .box p:last-child, .box ul:last-child { margin-bottom: 0; }
+    .box p, ol.steps li { text-align: left; }
+    .tag { font: 10px 'Press Start 2P', monospace; display: inline-block; background: var(--red); color: #fff; padding: 3px 5px; margin-bottom: 6px; }
+    figure.shot { margin: 10px 0 14px; background: #111; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--red); padding: 8px 8px 6px; }
+    figure.shot pre { margin: 0; color: var(--amber); font: 8.6px/1.12 'Courier New', monospace; overflow: hidden; text-shadow: 0 0 3px #ffb00088; white-space: pre; }
+    figure.shot figcaption { color: #fff; font: 15px/1.2 'Archivo Narrow', sans-serif; font-style: italic; margin-top: 6px; border-top: 1px solid #fff4; padding-top: 5px; }
+    figure.shot figcaption b { color: var(--yel); font-style: normal; }
+    .crew { padding: 4px 22px 18px; }
+    .crew-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .reviewer { border: 3px solid var(--ink); background: #fff; box-shadow: 5px 5px 0 var(--blu); padding: 10px; }
+    .reviewer .who { font: 20px Anton, Impact, sans-serif; text-transform: uppercase; }
+    .reviewer .score { float: right; font: 44px/0.9 Anton, Impact, sans-serif; color: var(--red); -webkit-text-stroke: 1px var(--ink); }
+    .reviewer .fav { font: 9px/1.5 'Press Start 2P', monospace; color: var(--blu); margin-bottom: 6px; }
+    .reviewer p { margin: 0; font-size: 15.5px; }
+    .facts { display: grid; grid-template-columns: repeat(6, 1fr); border: 3px solid var(--ink); margin: 14px 0 0; background: var(--yel); }
+    .facts div { padding: 6px 8px; border-right: 2px solid var(--ink); font-weight: 700; font-size: 15px; }
+    .facts div:last-child { border-right: 0; }
+    .facts div b { display: block; font: 8px 'Press Start 2P', monospace; color: var(--red); margin-bottom: 4px; }
+    table.pts-table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+    table.pts-table td { padding: 1px 3px; border-bottom: 1px solid #fff3; }
+    table.pts-table td:last-child { text-align: right; font: 10px 'Press Start 2P', monospace; color: var(--yel); }
+    table.pts-table tr.grp td { font: 9px 'Press Start 2P', monospace; color: var(--yel); padding-top: 8px; border-bottom: 2px solid var(--yel); }
+    table.pts-table tr.tot td { font: 20px Anton, Impact, sans-serif; border: 0; padding-top: 6px; }
+    .map { font: 15.5px/1.15 VT323, monospace; background: #111; color: #5df25d; padding: 8px; white-space: pre; overflow: hidden; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--yel); margin: 8px 0 14px; }
+    .ad { border: 4px double var(--ink); background: repeating-linear-gradient(0deg, #fff 0 3px, #f2ede0 3px 6px); text-align: center; padding: 12px; margin: 12px 0; }
+    .ad .big { font: 40px/0.95 Anton, Impact, sans-serif; text-transform: uppercase; color: var(--blu); }
+    .ad .fine { font-size: 11px; color: #555; margin-top: 6px; }
+    .whisper { font-style: italic; }
+    .cta { text-align: center; padding: 16px 22px 26px; border-top: 3px double var(--ink); }
+    .cta a { display: inline-block; font: 14px 'Press Start 2P', monospace; background: var(--red); color: #fff; padding: 14px 18px; text-decoration: none; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+    .cta a:hover { background: var(--blu); }
+    .cta p { font-size: 13px; color: #555; margin: 14px 0 0; }
+    @media (max-width: 900px) {
+      .crew-grid { grid-template-columns: repeat(2, 1fr); }
+      .facts { grid-template-columns: repeat(3, 1fr); }
+      h1 { font-size: 56px; }
+    }
+    @media (max-width: 760px) {
+      .cols { column-count: 1; }
+    }
+    @media (max-width: 600px) {
+      .crew-grid { grid-template-columns: 1fr; }
+      .facts { grid-template-columns: repeat(2, 1fr); }
+      .masthead .logo { font-size: 36px; }
+      .masthead .issue { display: none; }
+      .burst { display: none; }
+      h1 { font-size: 44px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="gutter"><span>ELECTRO-GAMER MONTHLY</span><span>HOLIDAY 1987</span><span>PAGE 112</span></div>
+
+  <div class="masthead">
+    <div class="logo">Electro-Gamer<small>MONTHLY &middot; THE BIGGEST &amp; BADDEST</small></div>
+    <div class="issue">ISSUE #6<br>$3.95 US / $4.95 CAN<br>EXCLUSIVE!</div>
+  </div>
+
+  <div class="section-tab">TRICKS OF THE TRADE &middot; SPECIAL STRATEGY SECTION</div>
+
+  <header class="story">
+    <div class="burst"><div><span>130</span>OF 130<br>POINTS!</div></div>
+    <h1>Leisure Suit <span class="hl">Jeff</span><br>The Complete Solution!</h1>
+    <p class="deck">Get paid! Fix the Fiero! Remove Ohio! Our crack strategy team donned polyester, braved the break room and lived to tell the tale. Here is every single point in Act I: "In Search of the Lost Paycheck."</p>
+    <div class="byline">BY "DISCO" DAVE KOWALSKI &amp; THE ELECTRO-GAMER STRATEGY SQUAD</div>
+  </header>
+
+  <div class="cols">
+    <p class="dropcap">Hold on to your bell-bottoms, gamers! Polyester Software's new parser adventure has been jamming our office phone lines since the day it hit store shelves. The number one question? "<i>How do I get Merv's stapler?!</i>" (Number two: "What does PC LOAD LETTER mean?" We're still not sure, either.)</p>
+    <p>For the uninitiated: you play Jeff Lovett, 44 years young and the proud owner of one powder-blue leisure suit. Tomorrow night is the Westside High reunion. Jeff's Pontiac Fiero is deader than disco, his suit has a chili stain shaped like the great state of Ohio, and his wallet holds a grand total of <b>$12.75</b>. Your mission: get your paycheck, fix the car, clean the suit and get a good night's sleep.</p>
+    <p>Like the Sierra classics it pays homage to, <i>Leisure Suit Jeff</i> uses a type-in parser. Type <kbd>LOOK</kbd>, <kbd>TAKE</kbd>, <kbd>TALK TO</kbd> and friends in plain English. Unlike those classics, you can also type <kbd>GO TO COSTCO</kbd> from anywhere and hop on the #42 bus. It costs $2.00 and half an hour of game time. Once the Fiero runs, <kbd>DRIVE TO</kbd> anywhere for free in 15 minutes.</p>
+    <p>The clock starts at <b>2:30 PM Friday</b>, and every command burns a game minute. Don't panic: our route below wraps up before 6 PM, with hours to spare before Costco locks its doors at 8:30. Ready? Fire up your PC, warm up that AdLib card, and follow along. <b>Remember: SAVE EARLY, SAVE OFTEN!</b></p>
+
+    <div class="box yel">
+      <span class="tag">PRO TIP!</span>
+      <p><b>The parser understands more than you think.</b> <kbd>X MEMO</kbd> examines, <kbd>I</kbd> shows inventory, and <kbd>PICK UP THE TPS REPORT</kbd> works as well as <kbd>TAKE REPORT</kbd>. You can even click the names under the picture to add them to your command!</p>
+    </div>
+
+    <h2>Part 1: Synergex Solutions<small>FRIDAY, 2:30 PM &middot; 43 POINTS</small></h2>
+    <figure class="shot"><pre data-room="work_cubes"></pre><figcaption><b>CUBICLE FARM:</b> A gray maze of fabric walls and broken dreams. Merv is NOT going to give up that stapler for free.</figcaption></figure>
+
+    <h3>Your Cubicle</h3>
+    <ol class="steps">
+      <li><kbd>READ MEMO</kbd> <span class="pts">+1</span> All TPS reports need the NEW cover sheet. No cover sheet, no paycheck. Mmm-kay?</li>
+      <li><kbd>TAKE REPORT</kbd> <span class="pts">+2</span></li>
+      <li><kbd>USE COMPUTER</kbd> <span class="pts">+2</span> You print the cover sheet... and get the dreaded <b>PC LOAD LETTER</b>.</li>
+      <li><kbd>PLAY SOLITAIRE</kbd> <span class="pts">+1</span> Seriously! It's the most-missed point in the game. See "The Secret Point" below.</li>
+    </ol>
+
+    <h3>The Break Room</h3>
+    <ol class="steps">
+      <li><kbd>GO TO BREAK ROOM</kbd></li>
+      <li><kbd>KICK PRINTER</kbd> <span class="pts">+2</span> It won't fix anything, but boy does it feel good.</li>
+      <li><kbd>OPEN FRIDGE</kbd> Look, but <b>do not touch</b>. Trust us. (See Death Watch.)</li>
+      <li><kbd>TAKE PAPER</kbd> The ream is propping up the wobbly table. CRASH!</li>
+      <li><kbd>PUT PAPER IN PRINTER</kbd> <span class="pts">+3</span></li>
+      <li><kbd>TAKE COVER SHEET</kbd> <span class="pts">+2</span></li>
+      <li><kbd>TAKE CAKE</kbd> <span class="pts">+2</span> Sorry, Deb.</li>
+      <li><kbd>TAKE FLAIR</kbd>, then <kbd>WEAR FLAIR</kbd> <span class="pts">+2</span> Minimum flair achieved!</li>
+    </ol>
+
+    <figure class="shot"><pre data-room="work_break"></pre><figcaption><b>BREAK ROOM:</b> Mandatory Fun Friday. That printer is your nemesis. That yogurt is somebody else's.</figcaption></figure>
+
+    <h3>Merv's Cubicle &amp; The Boss</h3>
+    <ol class="steps">
+      <li><kbd>GO CUBICLES</kbd></li>
+      <li><kbd>GIVE CAKE TO MERV</kbd> <span class="pts">+5</span> A corner piece! Merv lends you his precious orange stapler. (Try <kbd>TAKE STAPLER</kbd> first if you want to hear a dial-up modem in pain.)</li>
+      <li><kbd>STAPLE REPORT</kbd> <span class="pts">+5</span> KA-CHUNK!</li>
+      <li><kbd>GIVE STAPLER TO MERV</kbd> <span class="pts">+3</span> Be a pal. He'll smile for the first time in eleven years.</li>
+      <li><kbd>GO TO BRUMLEY'S OFFICE</kbd> and <kbd>TALK TO BRUMLEY</kbd></li>
+      <li><kbd>GIVE REPORT TO BRUMLEY</kbd> <span class="pts">+10</span> <span class="cash">+$250.00</span> Cha-ching! Payroll is "doing a cash thing" this week.</li>
+    </ol>
+
+    <h3>The Lobby</h3>
+    <ol class="steps">
+      <li><kbd>GO LOBBY</kbd></li>
+      <li><kbd>TALK TO PEGGY</kbd> <span class="pts">+1</span> You'll be placed on hold. In person.</li>
+      <li><kbd>TALK TO TODDS</kbd> <span class="pts">+2</span> Survive the consultants!</li>
+    </ol>
+
+    <div class="box red">
+      <h3>Death Watch!</h3>
+      <p>It wouldn't be a Sierra-style adventure without some spectacular ways to buy the farm. Here's how NOT to play:</p>
+      <ul>
+        <li><b>KAREN KNOWS:</b> <kbd>EAT YOGURT</kbd> in the break room. She counted them.</li>
+        <li><b>DEATH BY DECAF:</b> <kbd>DRINK COFFEE</kbd>. That pot has been brewing since 1997.</li>
+        <li><b>DEATH BY BRUT FORCE:</b> <kbd>DRINK COLOGNE</kbd>. It goes on your neck, Jeff.</li>
+        <li><b>DEATH BY CONDIMENT:</b> <kbd>EAT MAYO</kbd> at Costco. All five gallons.</li>
+        <li><b>EAU DE DEATH:</b> <kbd>DRINK</kbd> the 1-gallon jug of cologne in the aisles.</li>
+        <li><b>NO BATTERY FOR YOU:</b> Show up at Costco after 8:30 PM without a battery. Hello, bus to the reunion.</li>
+      </ul>
+      <p>Bought the farm? Type <kbd>UNDO</kbd> to rewind one move. If only real life had this.</p>
+    </div>
+
+    <h2>Part 2: Shady Pines<small>HOME SWEET HOME &middot; 17 POINTS</small></h2>
+    <figure class="shot"><pre data-room="home_lot"></pre><figcaption><b>SHADY PINES:</b> There are no pines. There is no shade. There IS a dumpster, and it's hiding something valuable.</figcaption></figure>
+    <ol class="steps">
+      <li><kbd>TAKE BUS HOME</kbd> <span class="cash neg">-$2.00</span></li>
+      <li><kbd>SEARCH DUMPSTER</kbd> <span class="pts">+4</span> A <b>$10-off battery coupon</b>, valid TODAY ONLY! It smells like pepperoni. Do NOT skip this!</li>
+      <li><kbd>OPEN HOOD</kbd> <span class="pts">+2</span> Yep, the battery's dead. You'll need a new one.</li>
+      <li><kbd>GO APARTMENT</kbd></li>
+      <li><kbd>LISTEN TO MESSAGES</kbd> <span class="pts">+2</span> Mom, the reunion committee and... Costco. Your Gold Star membership has EXPIRED. Uh-oh.</li>
+      <li><kbd>SEARCH COUCH</kbd> <span class="pts">+2</span> <span class="cash">+$0.75</span></li>
+      <li><kbd>GO BATHROOM</kbd> and <kbd>LOOK IN MIRROR</kbd> <span class="pts">+1</span></li>
+      <li><kbd>OPEN CABINET</kbd>, <kbd>TAKE COLOGNE</kbd>, <kbd>TAKE COMB</kbd></li>
+      <li><kbd>WEAR COLOGNE</kbd> <span class="pts">+3</span> Somewhere in Ohio, a fly drops dead.</li>
+      <li><kbd>COMB HAIR</kbd> <span class="pts">+3</span> Behold the magnificent swoop!</li>
+    </ol>
+    <div class="box blu">
+      <span class="tag">WARNING!</span>
+      <p>The waterbed looks inviting, but <kbd>SLEEP</kbd> doesn't end the act until Jeff has been paid, fixed the Fiero and cleaned the suit. Try it early and you'll just stare at the ceiling for twenty restless minutes.</p>
+    </div>
+
+    <h2>Part 3: Costco<small>THE WAREHOUSE &middot; 40 POINTS</small></h2>
+    <ol class="steps">
+      <li><kbd>GO TO COSTCO</kbd> <span class="cash neg">-$2.00</span> Decline the soup.</li>
+      <li><kbd>TAKE CART</kbd> <span class="pts">+2</span> <b>Grab it NOW!</b> That battery weighs 40 pounds, and you can't buy it without a cart.</li>
+      <li><kbd>ENTER</kbd>, then <kbd>RENEW MEMBERSHIP</kbd> <span class="pts">+5</span> <span class="cash neg">-$65.00</span> Gus won't let an expired card past him, son.</li>
+      <li><kbd>TALK TO GUS</kbd> <span class="pts">+1</span> He's worked here since 1983 and will outlive us all.</li>
+      <li><kbd>GO AISLES</kbd></li>
+      <li><kbd>STARE AT TVS</kbd> <span class="pts">+2</span> Arms crossed. Nod slowly. Male bonding at its finest.</li>
+      <li><kbd>TALK TO SAMPLE LADY</kbd>, then <kbd>EAT WEENIE</kbd> <span class="pts">+3</span> Always engage with the brand.</li>
+      <li><kbd>TAKE PEN</kbd> <span class="pts">+4</span> Marge's free Stain-B-Gone pen!</li>
+      <li><kbd>CLEAN SUIT WITH PEN</kbd> <span class="pts">+10</span> Ohio shrinks to Rhode Island... then vanishes!</li>
+    </ol>
+    <figure class="shot"><pre data-room="costco_aisles"></pre><figcaption><b>THE AISLES:</b> Sizes meant for a family of forty. Marge has what you need. The mayo does NOT.</figcaption></figure>
+    <ol class="steps" start="10" style="counter-reset: s 9">
+      <li><kbd>GO TIRE CENTER</kbd></li>
+      <li><kbd>BUY BATTERY</kbd> <span class="pts">+8</span> <span class="pts">+2</span> <span class="cash neg">-$79.99</span> Rusty takes the pepperoni coupon, so the DieHarder costs $79.99 instead of $89.99. "Red to red, black to black, chief."</li>
+      <li><kbd>GO FOOD COURT</kbd> and <kbd>BUY HOT DOG</kbd> <span class="cash neg">-$1.50</span></li>
+      <li><kbd>EAT HOT DOG</kbd> <span class="pts">+3</span> Lean forward at 45 degrees. Not one drop on the suit!</li>
+    </ol>
+
+    <div class="box">
+      <span class="tag">BUDGET BREAKDOWN</span>
+      <p>Paycheck ($250) plus couch quarters ($0.75) covers it all: membership $65, battery $79.99, hot dog $1.50 and three bus rides at $2 each. You'll finish Act I with <b>$111.01</b> in your pocket. Lose the coupon and you're still fine, but it's two easy points!</p>
+    </div>
+
+    <h2>Part 4: Victory Lap<small>BACK HOME &middot; 30 POINTS</small></h2>
+    <ol class="steps">
+      <li><kbd>TAKE BUS HOME</kbd> <span class="pts">+2</span> <span class="cash neg">-$2.00</span> Jeff returns the cart to the corral like a decent human being. Civilization thanks you.</li>
+      <li><kbd>PUT BATTERY IN CAR</kbd> <span class="pts">+10</span> VRRRROOM! The Fiero lives! One headlight pops up proudly.</li>
+      <li><kbd>DRIVE TO WORK</kbd> <span class="pts">+3</span> Take her for a spin, then <kbd>DRIVE HOME</kbd>. It's free!</li>
+      <li><kbd>GO APARTMENT</kbd></li>
+      <li><kbd>SLEEP IN WATERBED</kbd> <span class="pts">+15</span> The waterbed sloshes in triumph. <b>END OF ACT I!</b></li>
+    </ol>
+
+    <div class="box yel">
+      <h3>The Secret Point</h3>
+      <p>Finished with 129 points and pulling your hair out? (Careful, Jeff doesn't have much to spare.) The missing point is <b>"productivity."</b> Back at your cubicle, type <kbd>PLAY SOLITAIRE</kbd>. You win, the cards bounce, and it's the most fulfilling ten minutes of Jeff's work week. <b>130 of 130!</b></p>
+    </div>
+
+    <div class="box blu">
+      <h3>The Complete Point List</h3>
+      <table class="pts-table" id="points"></table>
+    </div>
+
+    <h3>Map Of The Known World</h3>
+    <div class="map">SYNERGEX SOLUTIONS
+  [BREAK RM]--[CUBICLES]--[BRUMLEY]
+                  |
+              (elevator)
+                  |
+               [LOBBY]
+
+SHADY PINES APTS
+  [BATHROOM]--[APARTMENT]--[LOT/FIERO]
+
+COSTCO
+  [FOOD CT]--[PARKING LOT]
+                  |
+             [ENTRANCE]
+                  |
+              [AISLES]--[TIRE CTR]
+
+ BUS: $2.00/30min  FIERO: free/15min</div>
+
+    <div class="box">
+      <span class="tag">SOUND CHECK</span>
+      <p>Got an AdLib Music Synthesizer Card? Crank it! The swingin' title theme "Polyester Nights" is pure lounge-lizard bliss. Every location has its own groove, from the bossa-nova hold music at Synergex to the "Bulk Buy Boogie" at Costco. Office-mates complaining? Type <kbd>MUSIC OFF</kbd>, <kbd>SFX OFF</kbd>, or <kbd>VOLUME 3</kbd>.</p>
+    </div>
+
+    <div class="ad">
+      <div class="tag">ADVERTISEMENT</div>
+      <div class="big">Brut Force</div>
+      <p><i>"For the man who wants to be smelled before he is seen."</i></p>
+      <p><b>NOW IN THE 1-GALLON JUG!</b></p>
+      <div class="fine">Not for internal use. Seriously. Ask Jeff.</div>
+    </div>
+
+    <div class="box">
+      <span class="tag">WHISPERS</span>
+      <p class="whisper">Our spies at Polyester Software say Act II is in the works. Jeff will need a date for the reunion, plus some dignity and, apparently, ice. Our sources hint at a gym called Iron Paradise, a place named Lefty's Lounge and a trip to the Disco Inferno. We also noticed some <b>very</b> strange stuff in Act I, like "8K" TVs and a teenager calling Jeff's suit "lowkey fire." Time travel? A typo? We'll keep you posted, gamers!</p>
+    </div>
+  </div>
+
+  <section class="crew">
+    <h2>Review Crew<small>FOUR REVIEWERS &middot; ONE LEISURE SUIT</small></h2>
+    <div class="crew-grid">
+      <div class="reviewer"><div class="score">8</div><div class="who">Disco Dave</div><div class="fav">FAVES: ADVENTURES, POLYESTER</div><p>The funniest parser game since a certain other guy in a leisure suit. The Merv stapler puzzle is a classic. Short, but every room has a gag.</p></div>
+      <div class="reviewer"><div class="score">7</div><div class="who">Mega Marty</div><div class="fav">FAVES: SHOOTERS, ANYTHING FAST</div><p>No joystick? No laser blasts? Fine. I still laughed out loud at the yogurt death. The parser understood pretty much everything I typed.</p></div>
+      <div class="reviewer"><div class="score">9</div><div class="who">Big Al</div><div class="fav">FAVES: RPGS, HOT DOGS</div><p>As a man who has eaten a $1.50 hot dog at a 45-degree angle, I felt SEEN. The AdLib tunes are bodacious. Act II, please!</p></div>
+      <div class="reviewer"><div class="score">6</div><div class="who">Kid Kaboom</div><div class="fav">FAVES: SPORTS, SKATEBOARDING</div><p>I don't get half the office jokes and I've never had a TPS report. Then again, my dad played it and cried laughing. So, a winner for dads.</p></div>
+    </div>
+    <div class="facts">
+      <div><b>PUBLISHER</b>Polyester Software</div>
+      <div><b>SYSTEM</b>PC / Tandy (AdLib)</div>
+      <div><b>THEME</b>Adventure</div>
+      <div><b>PLAYERS</b>1</div>
+      <div><b>DIFFICULTY</b>Moderate</div>
+      <div><b>AVAILABLE</b>Now!</div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <a href="./">&#9654; PLAY LEISURE SUIT JEFF NOW</a>
+    <p>Electro-Gamer Monthly is a fictional magazine. Leisure Suit Jeff is an original parody game, not affiliated with Sierra On-Line or Leisure Suit Larry.</p>
+  </div>
+  <div class="gutter"><span>ELECTRO-GAMER &middot; TRICKS OF THE TRADE</span><span>LEISURE SUIT JEFF</span><span>PAGE 113</span></div>
+</div>
+
+<script src="js/registry.js"></script>
+<script src="js/content/world.js"></script>
+<script src="js/content/items.js"></script>
+<script src="js/content/home.js"></script>
+<script src="js/content/work.js"></script>
+<script src="js/content/costco.js"></script>
+<script src="js/engine.js"></script>
+<script>
+  // "Screenshots" and the point list come straight from the game data so they never drift.
+  (function () {
+    var E = LSJ.Engine;
+    E.start();
+    document.querySelectorAll('pre[data-room]').forEach(function (pre) {
+      E.state.room = pre.dataset.room;
+      pre.textContent = E.view().art.replace(/^\n/, '');
+    });
+    function fitShots() {
+      document.querySelectorAll('figure.shot pre').forEach(function (pre) {
+        var cols = Math.max.apply(null, pre.textContent.split('\n').map(function (l) { return l.length; }));
+        pre.style.fontSize = Math.min(12, pre.clientWidth / (cols * 0.6)) + 'px';
+      });
+    }
+    fitShots();
+    window.addEventListener('resize', fitShots);
+
+    var groups = [
+      ['SYNERGEX', ['read_memo', 'take_report', 'print_cover', 'solitaire', 'kick_printer', 'load_printer', 'get_cover', 'take_cake', 'wear_flair', 'merv_stapler', 'staple_report', 'return_stapler', 'paid', 'talk_peggy', 'talk_todds']],
+      ['SHADY PINES', ['coupon', 'open_hood', 'messages', 'couch_quarters', 'look_mirror', 'cologne', 'comb_hair']],
+      ['COSTCO', null],
+      ['VICTORY LAP', ['return_cart', 'install_battery', 'first_drive', 'act_end']],
+    ];
+    var used = {};
+    groups.forEach(function (g) { (g[1] || []).forEach(function (k) { used[k] = 1; }); });
+    groups[2][1] = Object.keys(LSJ.scores).filter(function (k) { return !used[k]; });
+
+    var rows = [], total = 0;
+    groups.forEach(function (g) {
+      rows.push('<tr class="grp"><td colspan="2">' + g[0] + '</td></tr>');
+      g[1].forEach(function (k) {
+        var s = LSJ.scores[k];
+        if (!s) return;
+        total += s.pts;
+        rows.push('<tr><td>' + s.label.charAt(0).toUpperCase() + s.label.slice(1) + '</td><td>' + s.pts + '</td></tr>');
+      });
+    });
+    rows.push('<tr class="tot"><td>TOTAL</td><td>' + total + '</td></tr>');
+    document.getElementById('points').innerHTML = rows.join('');
+  })();
+</script>
+</body>
+</html>
