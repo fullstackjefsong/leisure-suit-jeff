@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leisure Suit Jeff</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/crt.css">
+</head>
+<body>
+  <div id="crt">
+    <div id="screen">
+      <div id="status" class="box">
+        <span id="st-score"></span>
+        <span id="st-title">L E I S U R E &nbsp; S U I T &nbsp; J E F F</span>
+        <span id="st-right"></span>
+      </div>
+      <pre id="art" class="box"></pre>
+      <div id="panel" class="box">
+        <div id="loc"></div>
+        <div><span class="lbl">You see:</span> <span id="see"></span></div>
+        <div><span class="lbl">Exits:</span> <span id="exits"></span></div>
+        <div><span class="lbl">Travel:</span> <span id="travel"></span> <span class="dim">(MAP for all)</span></div>
+      </div>
+      <div id="log" class="box" aria-live="polite"></div>
+      <div id="promptline">
+        <span class="caret">&gt;</span>
+        <input id="cmd" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Command">
+      </div>
+    </div>
+  </div>
+
+  <script src="js/registry.js"></script>
+  <script src="js/content/world.js"></script>
+  <script src="js/content/items.js"></script>
+  <script src="js/content/home.js"></script>
+  <script src="js/content/work.js"></script>
+  <script src="js/content/costco.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
